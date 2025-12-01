@@ -9,6 +9,9 @@
   <h1>Login Form</h1>
 
   <form id="login-form">
+    <!-- Username -->
+    <label for="username">Username</label>
+    <br />
     <input
       type="text"
       id="username"
@@ -16,6 +19,9 @@
     />
     <br /><br />
 
+    <!-- Password -->
+    <label for="password">Password</label>
+    <br />
     <input
       type="password"
       id="password"
@@ -23,16 +29,16 @@
     />
     <br /><br />
 
-    <label>
-      <input type="checkbox" id="checkbox" />
-      Remember me.
-    </label>
+    <!-- Remember Me -->
+    <label for="checkbox">Remember me.</label>
+    <input type="checkbox" id="checkbox" />
     <br /><br />
 
+    <!-- Submit -->
     <input type="submit" id="submit" value="Submit" />
   </form>
 
-  <!-- hidden initially, shown only if credentials are saved -->
+  <!-- Existing user button (hidden initially) -->
   <button id="existing" style="display: none;">
     Login as existing user
   </button>
