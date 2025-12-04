@@ -1,48 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
   <title>Login Form</title>
-  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
+  <!-- Heading -->
   <h1>Login Form</h1>
 
-  <form id="login-form">
+  <!-- Form -->
+  <form id="loginForm">
+    
     <!-- Username -->
-    <label for="username">Username</label>
-    <br />
     <input
       type="text"
       id="username"
       placeholder="Username"
     />
-    <br /><br />
+
+    <br/><br/>
 
     <!-- Password -->
-    <label for="password">Password</label>
-    <br />
     <input
       type="password"
       id="password"
       placeholder="Password"
     />
-    <br /><br />
+
+    <br/><br/>
 
     <!-- Remember Me -->
-    <label for="checkbox">Remember me.</label>
-    <input type="checkbox" id="checkbox" />
-    <br /><br />
+    <label>
+      <input type="checkbox" id="checkbox" />
+      Remember me.
+    </label>
 
-    <!-- Submit -->
+    <br/><br/>
+
+    <!-- Submit button -->
     <input type="submit" id="submit" value="Submit" />
+
   </form>
 
-  <!-- Existing user button (hidden initially) -->
-  <button id="existing" style="display: none;">
+  <br/>
+
+  <!-- Existing User Login Button -->
+  <button id="existing" style="display:none;">
     Login as existing user
   </button>
 
-  <script type="text/javascript" src="./script.js"></script>
+
+  <script>
+    const usernameInput = document.getElementById("username");
+    const passwordInput = document.getElementById("password");
+    const checkbox = document.getElementById("checkbox");
+    const submitBtn = document.getElementById("submit");
+    const existingBtn = document.getElementById("existing");
+    const form = document.getElementById("loginForm");
+
+    // ----- On page load -----
+    window.onload = function () {
+      const savedUsername = localStorage.getItem("username");
+      const savedPassword = localStorage.getItem("password");
+
+      if (savedUsername && savedPassword) {
+        existingBtn.style.display = "inline-block";
+      } else {
+        existingBtn.style.display = "none";
+      }
+    };
+
+    // ----- Form Submit -----
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const username = usernameInput.value;
+      const password = passwordInput.value;
+
+      alert(Logged in as ${username});
+
+      if (checkbox.checked) {
+        localStorage.setItem("username", username);
+        localStorage.setItem("password", password);
+      } else {
+        localStorage.removeItem("username");
+        localStorage.removeItem("password");
+      }
+    });
+
+    // ----- Existing User Button -----
+    existingBtn.addEventListener("click", function () {
+      const savedUsername = localStorage.getItem("username");
+
+      if (savedUsername) {
+        alert(Logged in as ${savedUsername});
+      }
+    });
+  </script>
+
 </body>
 </html>
